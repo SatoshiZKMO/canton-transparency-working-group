@@ -102,81 +102,79 @@
 </header>
 
 <nav>
-    <span>Overview</span>
-    <span>Governance</span>
-    <span>Fund Allocation</span>
-    <span>Grant Lifecycle</span>
-    <span>Reports</span>
+    <span onclick="showSection('overview')">Overview</span>
+    <span onclick="showSection('governance')">Governance</span>
+    <span onclick="showSection('fund')">Fund Allocation</span>
+    <span onclick="showSection('lifecycle')">Grant Lifecycle</span>
+    <span onclick="showSection('reports')">Reports</span>
 </nav>
 
 <div class="container">
 
-    <div class="card">
-        <h2>Development Fund Snapshot</h2>
-        <p>5% of future Canton Coin emissions are programmatically allocated to the Development Fund under CIP-0082.</p>
+    <div class="container">
+
+    <!-- OVERVIEW -->
+    <div id="overview" class="section">
+        <div class="card">
+            <h2>Development Fund Snapshot</h2>
+            <p>5% of future Canton Coin emissions are programmatically allocated to the Development Fund under CIP-0082.</p>
+        </div>
+
+        <div class="card">
+            <h2>Milestone-Based Funding Model</h2>
+            <p>Approved proposals receive funding upon milestone acceptance and verification.</p>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>Governance Framework</h2>
-        <p>Administered under CIP-0100 through Tech & Ops review and Voting Group approval.</p>
+    <!-- GOVERNANCE -->
+    <div id="governance" class="section" style="display:none;">
+        <div class="card">
+            <h2>Governance Framework</h2>
+            <p>Administered under CIP-0100 through Tech & Ops review and Voting Group approval.</p>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>Milestone-Based Funding Model</h2>
-        <p>Approved proposals receive funding upon milestone acceptance and verification.</p>
+    <!-- FUND -->
+    <div id="fund" class="section" style="display:none;">
+        <div class="card">
+            <h2>Fund Allocation Model</h2>
+            <p>Programmatic 5% emission allocation supports sustainable ecosystem growth.</p>
+        </div>
     </div>
 
-    <div class="card">
-        <h2>Quarterly Transparency Reporting</h2>
-        <p>Standardized public reporting framework to enhance ecosystem visibility and accountability.</p>
+    <!-- LIFECYCLE -->
+    <div id="lifecycle" class="section" style="display:none;">
+        <div class="card">
+            <h2>Grant Lifecycle Tracker</h2>
+            <p>Proposal submission → Review → Approval → Milestone-based funding release.</p>
+        </div>
     </div>
 
-    <div class="card">
-    <h2>Active Proposals (Mock Data)</h2>
-
-    <table style="width:100%; border-collapse: collapse; font-size:14px;">
-        <thead>
-            <tr style="text-align:left; border-bottom:1px solid #e5e7eb;">
-                <th style="padding:10px;">Proposal</th>
-                <th style="padding:10px;">Category</th>
-                <th style="padding:10px;">Status</th>
-                <th style="padding:10px;">Milestone</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr style="border-bottom:1px solid #f3f4f6;">
-                <td style="padding:10px;">CTWG Framework</td>
-                <td style="padding:10px;">Governance</td>
-                <td style="padding:10px;">
-                 <span class="badge badge-review">Under Review</span>
-                </td>
-                <td style="padding:10px;">Milestone 1</td>
-            </tr>
-            <tr style="border-bottom:1px solid #f3f4f6;">
-                <td style="padding:10px;">Security Audit Tooling</td>
-                <td style="padding:10px;">Security</td>
-                <td style="padding:10px;">
-                 <span class="badge badge-approved">Approved</span>
-                </td>
-                <td style="padding:10px;">Milestone 2</td>
-            </tr>
-            <tr>
-                <td style="padding:10px;">DeFi Liquidity Bootstrap</td>
-                <td style="padding:10px;">Infrastructure</td>
-                <td style="padding:10px;">
-                 <span class="badge badge-submitted">Submitted</span>
-                </td>
-                <td style="padding:10px;">Pending</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <!-- REPORTS -->
+    <div id="reports" class="section" style="display:none;">
+        <div class="card">
+            <h2>Quarterly Transparency Reporting</h2>
+            <p>Standardized public reporting enhances accountability and visibility.</p>
+        </div>
     </div>
+
+</div>
 
 </div>
 <footer>
     CTWG – Governance & Development Fund Transparency Infrastructure (Work in Progress)
 </footer>
+
+<script>
+function showSection(id) {
+    const sections = document.querySelectorAll('.section');
+    sections.forEach(section => {
+        section.style.display = 'none';
+    });
+
+    document.getElementById(id).style.display = 'block';
+}
+</script>
 
 </body>
 </html>
