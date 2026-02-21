@@ -70,6 +70,29 @@
         font-size: 12px;
         color: #6b7280;
     }
+
+    .badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 500;
+   }
+
+    .badge-approved {
+    background-color: #d1fae5;
+    color: #065f46;
+   }
+
+   .badge-review {
+    background-color: #fef3c7;
+    color: #92400e;
+    }
+
+   .badge-submitted {
+    background-color: #e0e7ff;
+    color: #3730a3;
+   }
 </style>
 </head>
 <body>
@@ -124,19 +147,25 @@
             <tr style="border-bottom:1px solid #f3f4f6;">
                 <td style="padding:10px;">CTWG Framework</td>
                 <td style="padding:10px;">Governance</td>
-                <td style="padding:10px;">Under Review</td>
+                <td style="padding:10px;">
+                 <span class="badge badge-review">Under Review</span>
+                </td>
                 <td style="padding:10px;">Milestone 1</td>
             </tr>
             <tr style="border-bottom:1px solid #f3f4f6;">
                 <td style="padding:10px;">Security Audit Tooling</td>
                 <td style="padding:10px;">Security</td>
-                <td style="padding:10px;">Approved</td>
+                <td style="padding:10px;">
+                 <span class="badge badge-approved">Approved</span>
+                </td>
                 <td style="padding:10px;">Milestone 2</td>
             </tr>
             <tr>
                 <td style="padding:10px;">DeFi Liquidity Bootstrap</td>
                 <td style="padding:10px;">Infrastructure</td>
-                <td style="padding:10px;">Submitted</td>
+                <td style="padding:10px;">
+                 <span class="badge badge-submitted">Submitted</span>
+                </td>
                 <td style="padding:10px;">Pending</td>
             </tr>
         </tbody>
