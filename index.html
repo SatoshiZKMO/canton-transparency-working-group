@@ -482,17 +482,18 @@ function animateChart() {
   const bars = document.querySelectorAll(".bar-fill");
 
   bars.forEach((bar) => {
-    // 
-    bar.style.width = "0%";
+    bar.style.transition = "none";      // 
+    bar.style.width = "0%";             // 
   });
 
   // 
-  setTimeout(() => {
-    bars.forEach((bar) => {
-      const targetWidth = bar.getAttribute("data-width");
-      bar.style.width = targetWidth + "%";
-    });
-  }, 100);
+  void document.body.offsetHeight;
+
+  bars.forEach((bar) => {
+    bar.style.transition = "width 1s ease-in-out";  // 
+    const targetWidth = bar.getAttribute("data-width");
+    bar.style.width = targetWidth + "%";            // 
+  });
 }
     </script>
   </body>
