@@ -419,20 +419,27 @@ body.dark .bar span {
 
     <script>
       function showSection(id) {
-        const sections = document.querySelectorAll(".section");
-        sections.forEach((section) => {
-          section.style.display = "none";
-        });
+  const sections = document.querySelectorAll(".section");
+  sections.forEach((section) => {
+    section.style.display = "none";
+  });
 
-        document.getElementById(id).style.display = "block";
+  document.getElementById(id).style.display = "block";
 
-        const navItems = document.querySelectorAll("nav span");
-        navItems.forEach((item) => {
-          item.classList.remove("active");
-        });
+  const navItems = document.querySelectorAll("nav span");
+  navItems.forEach((item) => {
+    item.classList.remove("active");
+  });
 
-        document.getElementById("nav-" + id).classList.add("active");
-      }
+  document.getElementById("nav-" + id).classList.add("active");
+
+  // Trigger chart animation when Fund section is shown
+  if (id === "fund") {
+    setTimeout(() => {
+      animateChart();
+    }, 100);
+  }
+}
 
       // default active
       document.getElementById("nav-overview").classList.add("active");
@@ -470,6 +477,15 @@ toggleBtn.addEventListener("click", () => {
     toggleBtn.textContent = "Dark Mode";
   }
 });
+
+function animateChart() {
+  const bars = document.querySelectorAll('.bar-fill');
+
+  bars.forEach(bar => {
+    const targetWidth = bar.getAttribute('data-width');
+    bar.style.width = targetWidth + '%';
+  });
+}
     </script>
   </body>
 </html>
