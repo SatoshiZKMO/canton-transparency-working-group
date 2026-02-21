@@ -167,9 +167,60 @@
   opacity: 0.9;
    }
 
-   body.dark #theme-toggle {
+body.dark #theme-toggle {
   background: #2563eb;
-  }
+}
+
+/* Chart Styling */
+
+.chart {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.bar {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar span {
+  font-size: 12px;
+  margin-top: 4px;
+  color: #6b7280;
+}
+
+.bar-fill {
+  height: 10px;
+  border-radius: 6px;
+}
+
+.core {
+  width: 40%;
+  background: #3b82f6;
+}
+
+.tooling {
+  width: 25%;
+  background: #10b981;
+}
+
+.security {
+  width: 20%;
+  background: #f59e0b;
+}
+
+.infra {
+  width: 15%;
+  background: #8b5cf6;
+}
+
+/* Dark mode adjustment */
+
+body.dark .bar span {
+  color: #cbd5e1;
+}
+
     </style>
   </head>
   <body>
@@ -286,6 +337,31 @@
 
         <!-- FUND -->
         <div id="fund" class="section" style="display: none">
+            <div class="card">
+  <h2>Development Fund Allocation Breakdown</h2>
+
+  <div class="chart">
+    <div class="bar">
+      <div class="bar-fill core"></div>
+      <span>Core R&D – 40%</span>
+    </div>
+
+    <div class="bar">
+      <div class="bar-fill tooling"></div>
+      <span>Developer Tooling – 25%</span>
+    </div>
+
+    <div class="bar">
+      <div class="bar-fill security"></div>
+      <span>Security & Audits – 20%</span>
+    </div>
+
+    <div class="bar">
+      <div class="bar-fill infra"></div>
+      <span>Infrastructure – 15%</span>
+    </div>
+  </div>
+</div>
           <div class="card">
             <h2>Fund Allocation Model</h2>
             <p>
