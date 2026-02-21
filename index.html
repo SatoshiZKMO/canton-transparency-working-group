@@ -35,6 +35,13 @@
         cursor: pointer;
     }
 
+    nav span.active {
+    color: white;
+    font-weight: 600;
+    border-bottom: 2px solid #3b82f6;
+    padding-bottom: 3px;
+    }
+
     nav span:hover {
         color: white;
     }
@@ -102,11 +109,11 @@
 </header>
 
 <nav>
-    <span onclick="showSection('overview')">Overview</span>
-    <span onclick="showSection('governance')">Governance</span>
-    <span onclick="showSection('fund')">Fund Allocation</span>
-    <span onclick="showSection('lifecycle')">Grant Lifecycle</span>
-    <span onclick="showSection('reports')">Reports</span>
+    <span id="nav-overview" onclick="showSection('overview')">Overview</span>
+    <span id="nav-governance" onclick="showSection('governance')">Governance</span>
+    <span id="nav-fund" onclick="showSection('fund')">Fund Allocation</span>
+    <span id="nav-lifecycle" onclick="showSection('lifecycle')">Grant Lifecycle</span>
+    <span id="nav-reports" onclick="showSection('reports')">Reports</span>
 </nav>
 
 <div class="container">
@@ -173,7 +180,17 @@ function showSection(id) {
     });
 
     document.getElementById(id).style.display = 'block';
+
+    const navItems = document.querySelectorAll('nav span');
+    navItems.forEach(item => {
+        item.classList.remove('active');
+    });
+
+    document.getElementById('nav-' + id).classList.add('active');
 }
+
+// default active
+document.getElementById('nav-overview').classList.add('active');
 </script>
 
 </body>
