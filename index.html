@@ -146,28 +146,27 @@
     </nav>
 
     <div class="container">
-      <div class="container">
         <!-- OVERVIEW -->
         <div id="overview" class="section">
           <div class="metrics">
             <div class="metric-card">
               <div class="metric-title">Total Proposals</div>
-              <div class="metric-value">3</div>
+              <div class="metric-value" id="total-count">0</div>
             </div>
 
             <div class="metric-card">
               <div class="metric-title">Approved</div>
-              <div class="metric-value">1</div>
+              <div class="metric-value" id="approved-count">0</div>
             </div>
 
             <div class="metric-card">
               <div class="metric-title">Under Review</div>
-              <div class="metric-value">1</div>
+              <div class="metric-value" id="review-count">0</div>
             </div>
 
             <div class="metric-card">
               <div class="metric-title">Submitted</div>
-              <div class="metric-value">1</div>
+              <div class="metric-value" id="submitted-count">0</div>
             </div>
           </div>
           <div class="card">
@@ -180,6 +179,48 @@
 
           <div class="card">
             <h2>Milestone-Based Funding Model</h2>
+            <div class="card">
+  <h2>Active Proposals (Mock Data)</h2>
+
+  <table style="width:100%; border-collapse: collapse; font-size:14px;">
+    <thead>
+      <tr style="text-align:left; border-bottom:1px solid #e5e7eb;">
+        <th style="padding:10px;">Proposal</th>
+        <th style="padding:10px;">Category</th>
+        <th style="padding:10px;">Status</th>
+        <th style="padding:10px;">Milestone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:10px;">CTWG Framework</td>
+        <td style="padding:10px;">Governance</td>
+        <td style="padding:10px;">
+          <span class="badge badge-review status">Under Review</span>
+        </td>
+        <td style="padding:10px;">Milestone 1</td>
+      </tr>
+
+      <tr style="border-bottom:1px solid #f3f4f6;">
+        <td style="padding:10px;">Security Audit Tooling</td>
+        <td style="padding:10px;">Security</td>
+        <td style="padding:10px;">
+          <span class="badge badge-approved status">Approved</span>
+        </td>
+        <td style="padding:10px;">Milestone 2</td>
+      </tr>
+
+      <tr>
+        <td style="padding:10px;">DeFi Liquidity Bootstrap</td>
+        <td style="padding:10px;">Infrastructure</td>
+        <td style="padding:10px;">
+          <span class="badge badge-submitted status">Submitted</span>
+        </td>
+        <td style="padding:10px;">Pending</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
             <p>
               Approved proposals receive funding upon milestone acceptance and
               verification.
@@ -256,6 +297,28 @@
 
       // default active
       document.getElementById("nav-overview").classList.add("active");
+
+      function updateMetrics() {
+    const statuses = document.querySelectorAll('.status');
+    
+    let total = statuses.length;
+    let approved = 0;
+    let review = 0;
+    let submitted = 0;
+
+    statuses.forEach(status => {
+        if (status.textContent.includes('Approved')) approved++;
+        if (status.textContent.includes('Under Review')) review++;
+        if (status.textContent.includes('Submitted')) submitted++;
+    });
+
+    document.getElementById('total-count').textContent = total;
+    document.getElementById('approved-count').textContent = approved;
+    document.getElementById('review-count').textContent = review;
+    document.getElementById('submitted-count').textContent = submitted;
+}
+
+updateMetrics();
     </script>
   </body>
 </html>
