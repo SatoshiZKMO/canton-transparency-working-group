@@ -126,11 +126,56 @@
         font-size: 22px;
         font-weight: 600;
       }
+
+      /* DARK MODE */
+
+      body.dark {
+        background-color: #0f172a;
+        color: #e5e7eb;
+     }
+
+     body.dark .card,
+     body.dark .metric-card {
+       background-color: #1e293b;
+       box-shadow: none;
+      }
+
+     body.dark nav {
+       background: #0f172a;
+      }
+
+      body.dark header {
+       background: linear-gradient(90deg, #0f172a, #1e293b);
+     }
+
+      body.dark footer {
+      color: #9ca3af;
+    }
+
+    #theme-toggle {
+  float: right;
+  background: #3b82f6;
+  border: none;
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+    }
+
+   #theme-toggle:hover {
+  opacity: 0.9;
+   }
+
+   body.dark #theme-toggle {
+  background: #2563eb;
+  }
     </style>
   </head>
   <body>
     <header>
       <h1>Canton Transparency Working Group (CTWG)</h1>
+      <button id="theme-toggle">Dark Mode</button>
     </header>
 
     <nav>
@@ -319,6 +364,18 @@
 }
 
 updateMetrics();
+    
+   const toggleBtn = document.getElementById("theme-toggle");
+
+toggleBtn.addEventListener("click", () => {
+  document.body.classList.toggle("dark");
+
+  if (document.body.classList.contains("dark")) {
+    toggleBtn.textContent = "Light Mode";
+  } else {
+    toggleBtn.textContent = "Dark Mode";
+  }
+});
     </script>
   </body>
 </html>
