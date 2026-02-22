@@ -239,6 +239,23 @@ body.dark .bar span {
   color: #cbd5e1;
 }
 
+.filter-bar {
+  margin-bottom: 20px;
+}
+
+.filter-bar label {
+  font-size: 13px;
+  margin-right: 10px;
+  color: #6b7280;
+}
+
+.filter-bar select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  font-size: 13px;
+}
+
     </style>
   </head>
   <body>
@@ -296,6 +313,16 @@ body.dark .bar span {
             <div class="card">
   <h2>Active Proposals (Mock Data)</h2>
 
+  <div class="filter-bar">
+  <label for="status-filter">Filter by Status:</label>
+  <select id="status-filter" onchange="filterProposals()">
+    <option value="all">All</option>
+    <option value="Approved">Approved</option>
+    <option value="Under Review">Under Review</option>
+    <option value="Submitted">Submitted</option>
+  </select>
+</div>
+
   <table style="width:100%; border-collapse: collapse; font-size:14px;">
     <thead>
       <tr style="text-align:left; border-bottom:1px solid #e5e7eb;">
@@ -306,7 +333,7 @@ body.dark .bar span {
       </tr>
     </thead>
     <tbody>
-      <tr style="border-bottom:1px solid #f3f4f6;">
+      <tr class="proposal-row" data-status="Under Review" style="border-bottom:1px solid #f3f4f6;">
         <td style="padding:10px;">CTWG Framework</td>
         <td style="padding:10px;">Governance</td>
         <td style="padding:10px;">
@@ -315,7 +342,7 @@ body.dark .bar span {
         <td style="padding:10px;">Milestone 1</td>
       </tr>
 
-      <tr style="border-bottom:1px solid #f3f4f6;">
+      <tr class="proposal-row" data-status="Approved" style="border-bottom:1px solid #f3f4f6;">
         <td style="padding:10px;">Security Audit Tooling</td>
         <td style="padding:10px;">Security</td>
         <td style="padding:10px;">
@@ -324,7 +351,7 @@ body.dark .bar span {
         <td style="padding:10px;">Milestone 2</td>
       </tr>
 
-      <tr>
+      <tr class="proposal-row" data-status="Submitted">
         <td style="padding:10px;">DeFi Liquidity Bootstrap</td>
         <td style="padding:10px;">Infrastructure</td>
         <td style="padding:10px;">
@@ -445,23 +472,29 @@ body.dark .bar span {
       document.getElementById("nav-overview").classList.add("active");
 
       function updateMetrics() {
-    const statuses = document.querySelectorAll('.status');
-    
-    let total = statuses.length;
-    let approved = 0;
-    let review = 0;
-    let submitted = 0;
+  const rows = document.querySelectorAll('.proposal-row');
 
-    statuses.forEach(status => {
-        if (status.textContent.includes('Approved')) approved++;
-        if (status.textContent.includes('Under Review')) review++;
-        if (status.textContent.includes('Submitted')) submitted++;
-    });
+  let total = 0;
+  let approved = 0;
+  let review = 0;
+  let submitted = 0;
 
-    document.getElementById('total-count').textContent = total;
-    document.getElementById('approved-count').textContent = approved;
-    document.getElementById('review-count').textContent = review;
-    document.getElementById('submitted-count').textContent = submitted;
+  rows.forEach(row => {
+    if (row.style.display === "none") return;
+
+    total++;
+
+    const status = row.getAttribute("data-status");
+
+    if (status === "Approved") approved++;
+    if (status === "Under Review") review++;
+    if (status === "Submitted") submitted++;
+  });
+
+  document.getElementById('total-count').textContent = total;
+  document.getElementById('approved-count').textContent = approved;
+  document.getElementById('review-count').textContent = review;
+  document.getElementById('submitted-count').textContent = submitted;
 }
 
 updateMetrics();
@@ -477,6 +510,24 @@ toggleBtn.addEventListener("click", () => {
     toggleBtn.textContent = "Dark Mode";
   }
 });
+
+function filterProposals() {
+  const selected = document.getElementById("status-filter").value;
+  const rows = document.querySelectorAll(".proposal-row");
+
+  rows.forEach(row => {
+    const status = row.getAttribute("data-status");
+
+    if (selected === "all" || status === selected) {
+      row.style.display = "";
+    } else {
+      row.style.display = "none";
+    }
+  });
+
+  updateMetrics();
+}
+
 
 function animateChart() {
   const bars = document.querySelectorAll(".bar-fill");
